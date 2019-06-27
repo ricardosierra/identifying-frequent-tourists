@@ -8,8 +8,8 @@ import history from '../routes/history';
 
 const middlewares = {
     thunk,
-    routerMiddleware()
-}
+    routerMiddleware(history)
+};
 
 
 import rootReducer from "../reducers";
