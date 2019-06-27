@@ -1,10 +1,13 @@
 {
-  "name": "notes-app-client",
+  "name": "identifying-frequent-tourists",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "adminlte-reactjs": "^1.0.6",
+    "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-moment": "^0.9.2",
     "react-scripts": "3.0.1"
   },
   "scripts": {

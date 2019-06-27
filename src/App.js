@@ -1,26 +1,49 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Suspeit from './components/Suspeit';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            title: 'Identifying Frequent Tourists'
+        };
+
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    onClick() {
+        alert('Suspeit');
+    }
+
+    onSubmit(event) {
+        event.preventDefault();
+        alert('Suspeit');
+
+        console.log(this.input.value);
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <h1>
+                {this.state.title}
+                </h1>
+                <Suspeit
+                    title ={2}
+                    name="Michael"
+                    onClick={this.onClick}
+                />
+
+
+                <form onSubmit={this.onSubmit}>
+                    <input onChange={this.onChange} ref={input => this.input = input} />
+                </form>
+            </div>
+        );
+    }
 }
 
 export default App;

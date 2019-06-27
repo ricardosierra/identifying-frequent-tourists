@@ -1,0 +1,26 @@
+{
+    "flights": [
+        { 
+          "number": 1, 
+          "origin": "SP", 
+          "destination": "RJ",
+          "departure_time": "DepartureTime",
+          "arrival_time": "ArrivalTime"
+        }
+    ],
+    "passengers": [
+        { 
+            "national_id": 1, 
+            "title": "Ricardo", 
+            "gender": "Male"
+        }
+    ],
+    "tickets": [
+        { 
+          "passenger_national_id": 1, 
+          "flight_number": 1, 
+          "seat_number": 28
+        }
+    ],
+    "profile": { "name": "typicode" }
+  }
