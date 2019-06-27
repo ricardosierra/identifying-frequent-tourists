@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from "react-redux";
+import { PersistGate } from 'redux-persist/integration/react';
+
+import { store, persistor } from "./store";
+import FlightList from "/FlightList";
+
 import Suspeit from './components/Suspeit';
 
 class App extends Component {
@@ -27,21 +31,11 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
-                <h1>
-                {this.state.title}
-                </h1>
-                <Suspeit
-                    title ={2}
-                    name="Michael"
-                    onClick={this.onClick}
-                />
-
-
-                <form onSubmit={this.onSubmit}>
-                    <input onChange={this.onChange} ref={input => this.input = input} />
-                </form>
-            </div>
+            <Provider store={store}>
+                <PersistGate loading={null} persistor={persistor} >
+                    <FlightList />
+                </PersistGate>
+            </Provider>
         );
     }
 }
