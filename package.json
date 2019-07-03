@@ -1,38 +1,40 @@
 {
-  "name": "identifying-frequent-tourists",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "adminlte-reactjs": "^1.0.6",
-    "connected-react-router": "^6.4.0",
-    "history": "^4.9.0",
-    "moment": "^2.24.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-moment": "^0.9.2",
-    "react-redux": "^5.0.7",
-    "react-scripts": "3.0.1",
-    "redux": "^4.0.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "identifying-frequent-tourists",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "adminlte-reactjs": "^1.0.6",
+        "connected-react-router": "^6.4.0",
+        "history": "^4.9.0",
+        "moment": "^2.24.0",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "react-moment": "^0.9.2",
+        "react-redux": "^5.0.7",
+        "react-scripts": "3.0.1",
+        "redux": "^4.0.0"
+    },
+    "scripts": {
+        "start": "concurrently \"npm run server\" \"npm run client\"",
+        "server": "json-server --watch db.json --port 3001",
+        "client": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }

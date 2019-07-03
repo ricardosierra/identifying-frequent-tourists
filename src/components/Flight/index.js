@@ -15,7 +15,7 @@ class FormFlight extends Component {
 
     state = { 
         model: { 
-            id: 0, 
+            number: 0, 
             departure_time: '',
             origin: 0, 
             destination: 0 
@@ -29,7 +29,7 @@ class FormFlight extends Component {
     }
 
     create = () => {
-        this.setState({ model: { id: 0,  departure_time: '', origin: 0, destination: 0 } })
+        this.setState({ model: { number: 0,  departure_time: '', origin: 0, destination: 0 } })
         this.props.flightCreate(this.state.model);
     }
 
@@ -44,24 +44,24 @@ class FormFlight extends Component {
             <Form>
                 <FormGroup>
                     <Label for="departure_time">Departure Time:</Label>
-                    <Input id="departure_time" type="text" value={this.state.model.departure_time} placeholder="departure_time..."
+                    <Input number="departure_time" type="text" value={this.state.model.departure_time} placeholder="departure_time..."
                     onChange={e => this.setValues(e, 'departure_time') } />
                 </FormGroup>
                 <FormGroup>
                     <Label for="arrival_time">Arrival Time:</Label>
-                    <Input id="arrival_time" type="text" value={this.state.model.arrival_time} placeholder="arrival time..."
+                    <Input number="arrival_time" type="text" value={this.state.model.arrival_time} placeholder="arrival time..."
                     onChange={e => this.setValues(e, 'arrival_time') } />
                 </FormGroup>
                 <FormGroup>
                     <div className="form-row">
                         <div className="col-md-6">
                             <Label for="origin">Origin:</Label>
-                            <Input id="origin" type="text"  value={this.state.model.origin} placeholder="Origin do Voo" 
+                            <Input number="origin" type="text"  value={this.state.model.origin} placeholder="Origin do Voo" 
                             onChange={e => this.setValues(e, 'origin') } />
                         </div>
                         <div className="col-md-6">
                             <Label for="destination">Destination:</Label>
-                            <Input id="destination" type="text" value={this.state.model.destination} placeholder="Destino do voo" 
+                            <Input number="destination" type="text" value={this.state.model.destination} placeholder="Destino do voo" 
                             onChange={e => this.setValues(e, 'destination') } />
                         </div>
                     </div>
@@ -74,8 +74,8 @@ class FormFlight extends Component {
 
 class ListFlight extends Component {
 
-    delete = (id) => {
-        this.props.deleteFlight(id);
+    delete = (number) => {
+        this.props.deleteFlight(number);
     }
 
     onEdit = (flight) => {
@@ -107,7 +107,7 @@ class ListFlight extends Component {
                                 <td>{flight.arrival_time}</td>
                                 <td>
                                     <Button color="info" size="sm" onClick={e => this.onEdit(flight)}>Edit</Button>
-                                    <Button color="danger" size="sm" onClick={e => this.delete(flight.id)}>Delete</Button>
+                                    <Button color="danger" size="sm" onClick={e => this.delete(flight.number)}>Delete</Button>
                                 </td>
                             </tr>
                         ))
@@ -130,7 +130,7 @@ export default class FlightBox extends Component {
         }
     }
 
-    componentDidMount() {
+    componentDnumberMount() {
         fetch(this.Url)
             .then(response => response.json())
             .then(flights => this.setState({ flights }))
@@ -148,14 +148,14 @@ export default class FlightBox extends Component {
         console.log(data);
 
         const requestInfo = {
-            method: data.id !== 0? 'PUT': 'POST',
+            method: data.number !== 0? 'PUT': 'POST',
             body: JSON.stringify(data),
             headers: new Headers({
                 'Content-type': 'application/json'
             })
         };
 
-        if(data.id === 0) {
+        if(data.number === 0) {
             // CREATE NEW PRODUCT
             fetch(this.Url, requestInfo)
             .then(response => response.json())
@@ -168,11 +168,11 @@ export default class FlightBox extends Component {
             .catch(e => console.log(e)); 
         } else {
             // EDIT PRODUCT
-            fetch(`${this.Url}/${data.id}`, requestInfo)
+            fetch(`${this.Url}/${data.number}`, requestInfo)
             .then(response => response.json())
             .then(updatedFlight => {
                 let { flights } = this.state;
-                let position = flights.findIndex(flight => flight.id === data.id);
+                let position = flights.findIndex(flight => flight.number === data.number);
                 flights[position] = updatedFlight;
                 this.setState({ flights, message: { text: 'Voo atualizado com sucesso!', alert: 'info' } });
                 this.timerMessage(3000);
@@ -181,11 +181,11 @@ export default class FlightBox extends Component {
         }
     }
 
-    delete = (id) => {
-        fetch(`${this.Url}/${id}`, {method: 'DELETE'})
+    delete = (number) => {
+        fetch(`${this.Url}/${number}`, {method: 'DELETE'})
             .then(response => response.json())
             .then(rows => {
-                const flights = this.state.flights.filter(flight => flight.id !== id);
+                const flights = this.state.flights.filter(flight => flight.number !== number);
                 this.setState({ flights,  message: { text: 'Voo deletado com sucesso.', alert: 'danger' } });
                 this.timerMessage(3000);
             })

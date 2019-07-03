@@ -14,6 +14,10 @@ const defaultProps = {
 
 
 class Suspeit extends Component {
+    state = {
+        suspeits: []
+    }
+
     componentDidUpdate(prevProps, prevState) {
         console.log(this.props, this.state, prevProps, prevState);
     }
@@ -22,20 +26,23 @@ class Suspeit extends Component {
      * São aqueles possuem bilhetes de ida e volta em um mesmo dia, 
      * mais de 3 vezes nos últimos 30 dias.
      */
-    detected(passenger) {
+    detected(passengers) {
 
-        flights = [
+        // passengers. 
 
-            since_days: 
-        ];
+        let date = moment().subtract(1, 'months').format();
 
-        flights.map( passenger => {
+        axios.get((`http://localhost:3001/tickets?views_gte=${date}`))
+        .then(res => {
+            const tickets = res.data;
+
+            //@todo
+            var numFlights = tickets.reduce(function (n, passenger) {
+                return n + (passenger.date == '');
+            }, 0);
 
 
-
-            return (
-                <div onclick={this.onClick}>{passenger}</div>
-            );
+            this.setState({suspeits})
         })
 
         // Mesmo voo ida e volta
