@@ -3,16 +3,20 @@ import { Provider } from "react-redux";
 import { PersistGate } from 'redux-persist/integration/react';
 
 import { store, persistor } from "./store";
-import FlightList from "/FlightList";
+import FlightBox from "./components/Flight";
+
 
 class App extends Component {
     render() {
         return (
-            <Provider store={store}>
-                <PersistGate loading={null} persistor={persistor} >
-                    <FlightList />
-                </PersistGate>
-            </Provider>
+            <div className="container">
+                <Header title="App" />
+                <Provider store={store}>
+                    <PersistGate loading={null} persistor={persistor} >
+                        <FlightBox />
+                    </PersistGate>
+                </Provider>
+            </div>
         );
     }
 }
