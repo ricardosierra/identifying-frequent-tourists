@@ -1,70 +1,56 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
-const propTypes = {
-    passenger: PropTypes.string.isRequired,
-    flight: PropTypes.func,
-    onClick: PropTypes.string.isRequired
-}
-
-const defaultProps = {
-    passenger: 'Passenger 1',
-    flight: 'Flight 1'
-}
+import { useSelector, useDispatch } from 'react-redux';
 
 
 class Suspeit extends Component {
-    state = {
-        suspeits: []
-    }
+    const suspeits = useSelector = {
+        // Filtra quem tem mais de 3
+        state => state.filter( (passenger) => {
+            // Retorna viagens de ida e volta em menos de 24 hrs
+            if (flights.reduce( function( prevVal, elem, index, array ) {
+                // Is in the last 30 days
+                if (elem.departure_time < today()-(24*60*30)) {
+                    return 0;
+                }
 
-    componentDidUpdate(prevProps, prevState) {
-        console.log(this.props, this.state, prevProps, prevState);
-    }
+                //
+                if (flights.filter((flight) => {
+                    // Verifica se é ticke de volta
+                    if( flight.destination != elem.origin ||  elem.destination != flight.origin) {
+                        return false;
+                    }
 
-    /**
-     * São aqueles possuem bilhetes de ida e volta em um mesmo dia, 
-     * mais de 3 vezes nos últimos 30 dias.
-     */
-    detected(passengers) {
+                    // If have more then 24 hrs
+                    if ((flight.departure_time - elem.departure_time) > (24*60)) {
+                        return false;
+                    }
 
-        // passengers. 
+                    return true;
+                }).length() == 0) {
+                    return 0;
+                }
 
-        let date = moment().subtract(1, 'months').format();
-
-        axios.get((`http://localhost:3001/tickets?views_gte=${date}`))
-        .then(res => {
-            const tickets = res.data;
-
-            //@todo
-            var numFlights = tickets.reduce(function (n, passenger) {
-                return n + (passenger.date == '');
-            }, 0);
-
-
-            this.setState({suspeits})
+                // Se ele for passageiro retorna +1;
+                return prevVal + 1;
+            }, initialValue ) > 3) {
+                return true;
+            }
+            return false;
         })
-
-        // Mesmo voo ida e volta
-
-        // 
     }
 
     render() {
-        const {passenger, flight, onClick } = this.props;
-
-
         return (
+            <>
+
+            </>
             <div className="Suspeit">
-                <h1>Flight: {flight}</h1>
-                <h2>Passenger: {passenger}</h2>
-                <div onClick={onClick}>Capture</div>
+                {
+                    suspeits.map(suspeit => <li key={suspeit}>{suspeit}</li>)
+                }
             </div>
         );
     }
 }
-
-Suspeit.propTypes = propTypes;
-Suspeit.defaultProps = defaultProps;
 
 export default Suspeit;

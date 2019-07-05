@@ -44,15 +44,3 @@ QUEM SÃO OS PASSAGEIROS SUSPEITOS? São aqueles possuem bilhetes de ida e volta
 A segurança do país está em suas mãos!
 
 Você deve usar a biblioteca JSON Server para ser o seu backend, mas sem precisar desenvolver um. A ideia é que você seja capaz de persistir os dados das 3 entidades que precisa controlar no formato JSON, utilizando essa ferramenta.
-
-Precisamos que você construa a sua solução, utilizando o framework ReactJS. Seria interessante se utilizasse também a biblioteca Redux para controle de estado global.
-
-Sugerimos que crie um repositório no GitHub onde você vai disponibilizar o código da sua aplicação, e que nos envie o link assim que possível, para podermos acompanhar a evolução do projeto.
-
-Sinta-se a vontade para interagir com o nosso time para encontrar a solução, afinal, queremos construir algo juntos, certo?
-
-Estamos ansiosos para ver o que você vai preparar para nós!
-
-Até breve!
-
-Equipe JuryVox
