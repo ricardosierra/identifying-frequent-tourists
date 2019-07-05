@@ -12,7 +12,7 @@ const middlewares = {
 };
 
 
-import rootReducer from "../reducers";
+import rootReducer from "./ducks/reducers";
 
 const persistConfig = {
     key: 'root',
